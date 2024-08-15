@@ -30,7 +30,7 @@ class BenchmarkTime
   def get_time_materialized_view(kind)
     time = 0
     NUM_OF_TRIES.times do
-      time += Benchmark.realtime { PetStatistic.find(kind).pluck(:count) }
+      time += Benchmark.realtime { PetStatistic.find(kind).pet_count }
       Rails.cache.clear
     end
 
