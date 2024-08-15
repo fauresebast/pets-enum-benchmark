@@ -30,10 +30,10 @@ namespace :create_pets do
         pet_params_integer.concat(params.map { |param| param.merge(kind: kind_index) })
       end
 
-      PetInteger.insert_all(pet_params_integer)
+      # PetInteger.insert_all(pet_params_integer)
       PetString.insert_all(pet_params)
-      PetStringIndex.insert_all(pet_params)
-      PetIntegerIndex.insert_all(pet_params_integer)
+      # PetStringIndex.insert_all(pet_params)
+      # PetIntegerIndex.insert_all(pet_params_integer)
     end
   end
 end
