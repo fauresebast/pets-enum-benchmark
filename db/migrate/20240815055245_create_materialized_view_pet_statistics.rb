@@ -9,6 +9,9 @@ class CreateMaterializedViewPetStatistics < ActiveRecord::Migration[6.1]
           FROM pet_strings
           GROUP BY kind;
         SQL
+        execute <<-SQL
+          REFRESH MATERIALIZED VIEW pet_statistics
+        SQL
       end
 
       dir.down do
