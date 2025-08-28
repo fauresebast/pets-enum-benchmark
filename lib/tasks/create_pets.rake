@@ -1,7 +1,11 @@
+require 'progress_bar'
+
 namespace :create_pets do
   desc 'Create pets'
   task create: :environment do
-    10_000.times do
+    # ActiveRecord::Base.logger = Logger.new(STDOUT)
+    bar = ProgressBar.new(10_000)
+    10_000.times do |index|
       pet_params = []
       pet_params_integer = []
       time = Time.now
@@ -16,6 +20,14 @@ namespace :create_pets do
                  'rabbit'
                when 3
                  'owl'
+                when 4
+                  'crow'
+                when 5
+                  'fox'
+                when 6
+                  'parrot'
+                when 7
+                  'hedgehog'
                end
 
         params = [{
@@ -34,6 +46,7 @@ namespace :create_pets do
       PetString.insert_all(pet_params)
       PetStringIndex.insert_all(pet_params)
       PetIntegerIndex.insert_all(pet_params_integer)
+      bar.increment!
     end
   end
 end
