@@ -9,13 +9,21 @@ namespace :create_pets do
         kind_index = rand(4)
         kind = case kind_index
                when 0
-                 'cat'
+                 'Alaskan Malamute'
                when 1
-                 'dog'
+                 'German Shepherd'
                when 2
-                 'rabbit'
+                 'Golden Retriever'
                when 3
-                 'owl'
+                 'Siberian Husky'
+                when 4
+                  'Labrador Retriever'
+                when 5
+                  'Rottweiler'
+                when 6
+                  'Great Dane'
+                when 7
+                  'Doberman Pinscher'
                end
 
         params = [{
