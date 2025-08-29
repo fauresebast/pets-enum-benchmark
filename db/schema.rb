@@ -10,18 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_28_124057) do
-
+ActiveRecord::Schema[7.2].define(version: 2025_08_29_100909) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  # Custom types defined in this database.
+  # Note that some types may not work with other database engines. Be careful if changing database.
+  create_enum "pet_kind", ["cat", "dog", "rabbit", "owl"]
 
   create_table "pet_integer_indices", force: :cascade do |t|
     t.string "name"
     t.float "weight"
     t.date "birthday"
     t.integer "kind"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["kind"], name: "index_pet_integer_indices_on_kind"
   end
 
@@ -30,8 +33,27 @@ ActiveRecord::Schema.define(version: 2024_01_28_124057) do
     t.string "name"
     t.float "weight"
     t.date "birthday"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pet_pgsql_enum_indices", force: :cascade do |t|
+    t.enum "kind", null: false, enum_type: "pet_kind"
+    t.string "name"
+    t.float "weight"
+    t.date "birthday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind"], name: "index_pet_pgsql_enum_indices_on_kind"
+  end
+
+  create_table "pet_pgsql_enums", force: :cascade do |t|
+    t.enum "kind", null: false, enum_type: "pet_kind"
+    t.string "name"
+    t.float "weight"
+    t.date "birthday"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pet_string_indices", force: :cascade do |t|
@@ -39,8 +61,8 @@ ActiveRecord::Schema.define(version: 2024_01_28_124057) do
     t.float "weight"
     t.date "birthday"
     t.string "kind"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["kind"], name: "index_pet_string_indices_on_kind"
   end
 
@@ -49,8 +71,7 @@ ActiveRecord::Schema.define(version: 2024_01_28_124057) do
     t.string "name"
     t.float "weight"
     t.date "birthday"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
 end
